@@ -2,7 +2,6 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image"; // Use next/image for optimised images
 import styles from "./footer.module.css";
-import '../app/globals.css';
 
 const Footer: React.FC = () => {
 
