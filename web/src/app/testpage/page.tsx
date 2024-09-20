@@ -1,8 +1,7 @@
 'use client'
 
-import Navbar from '../../components/navbar';
-import Footer from '../../components/footer';  // Import the Footer component
-import '../globals.css';
+import Navbar from '@/app/components/navbar';
+import Footer from '@/app/components/footer';  // Import the Footer component
 
 export default function Home() {
   return (
