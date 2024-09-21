@@ -1,15 +1,25 @@
-'use client'
+'use client';
 
 import Navbar from '@/app/components/navbar';
-import Footer from '@/app/components/footer';  // Import the Footer component
+import Footer from '@/app/components/footer';
+import Placeholder from '@/app/components/placeholder';
+import styles from './page.module.css';
 
 export default function Home() {
   return (
-    <>
+    <div className={styles.pageWrapper}>
       <Navbar />
-      {/* Other page content */}
 
-      <Footer />  {/* Add the Footer component */}
-    </>
+      <div className={styles.pageContainer}>
+        <div className={styles.view}>
+          <Placeholder />
+          <Placeholder />
+          <Placeholder />
+          <Placeholder />
+        </div>
+      </div>
+
+      <Footer />
+    </div>
   );
 }
