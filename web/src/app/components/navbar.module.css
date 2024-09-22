@@ -1,31 +1,25 @@
-/* Main Navbar styling */
-
 .navbar {
   background-color: #000;
   color: white;
-  padding: 0.4rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding: 0.4rem 2rem;
 }
 
-/* Container to centre content and limit width */
 .container {
-  max-width: 900px; /* Adjust this value to the width you want */
+  max-width: 900px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1rem; /* Optional padding */
+  padding: 0 1rem;
 }
 
-/* Logo container holding both the image and text */
 .logoContainer {
   display: flex;
   align-items: center;
 }
 
 .logoImage {
-  border-radius: 50%; /* Make the logo circular */
+  border-radius: 50%;
 }
 
 .logoText {
@@ -44,7 +38,6 @@
   font-size: 0.8rem;
 }
 
-/* Hamburger menu */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -56,9 +49,9 @@
   height: 3px;
   background-color: white;
   margin: 4px 0;
+  transition: background-color 0.3s cubic-bezier(0.25, 1.0, 0.5, 1.0);
 }
 
-/* Nav Menu */
 .navMenu {
   display: flex;
   gap: 2rem;
@@ -71,17 +64,15 @@
 
 .navLink {
   font-size: 1.1rem;
-  color: white; /* Default text colour */
-  transition: color 0.3s cubic-bezier(0.25, 1.0, 0.5, 1.0); /* Transition for hover effect */
-}
- .navLink:hover {
-  color: #bafff8; /* Change text colour to light blue on hover */
+  color: white;
+  transition: color 0.3s cubic-bezier(0.25, 1.0, 0.5, 1.0);
 }
 
+.navLink:hover {
+  color: #bafff8;
+}
 
-/* Responsive for smaller screens */
 @media (max-width: 900px) {
-  /* Hide the text when screen is less than 900px */
   .logoText {
     display: none;
   }
@@ -93,28 +84,33 @@
   .navMenu {
     position: absolute;
     top: 60px;
-    left: 0; /* Aligns menu to the left */
+    left: 0;
     width: 100%;
-    height: 0; /* Initial height is 0 */
+    height: 0;
     background-color: black;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 1.2rem;
-    overflow: hidden; /* Prevents overflow when closed */
-    transition: height 0.5s cubic-bezier(0.25, 1.0, 0.5, 1.0); /* Slower transition */
+    overflow: hidden;
+    transition: height 0.5s cubic-bezier(0.25, 1.0, 0.5, 1.0);
   }
 
   .navMenu.active {
-    height: 200px; /* Expands to full height when active */
+    height: 200px;
   }
 
   .navLink {
     font-size: 1.1rem;
-    color: white; /* Default text colour */
-    transition: color 0.3s cubic-bezier(0.25, 1.0, 0.5, 1.0); /* Transition for hover effect */
+    color: white;
+    transition: color 0.3s cubic-bezier(0.25, 1.0, 0.5, 1.0);
   }
-   .navLink:hover {
-    color: #bafff8; /* Change text colour to light blue on hover */
+
+  .navLink:hover {
+    color: #bafff8;
+  }
+
+  .hamburger:hover .bar {
+    background-color: #bafff8;
   }
 }

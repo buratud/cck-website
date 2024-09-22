@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image"; // Use next/image for optimised images
+import Image from "next/image";
 import styles from "./navbar.module.css";
 
 const Navbar: React.FC = () => {
@@ -10,55 +10,64 @@ const Navbar: React.FC = () => {
     setIsOpen(!isOpen);
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 900) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-      <nav className={styles.navbar}>
-        <div className={styles.container}>
-          {/* Logo and Text Container */}
-          <div className={styles.logoContainer}>
-            {/* Logo */}
-            <Link href="/">
-              <Image
-                src="/CCK_normal_circle.png" // Replace with the actual path to your logo
-                alt="Computer Club Logo"
-                width={50}  // Adjust size based on your needs
-                height={50}
-                className={styles.logoImage}
-              />
-            </Link>
-            {/* Text */}
-            <div className={styles.logoText}>
-              <span className={styles.clubName}>Computer Club</span>
-              <span className={styles.universityName}>KMUTNB</span>
-            </div>
+    <nav className={styles.navbar}>
+      <div className={styles.container}>
+        <div className={styles.logoContainer}>
+          <Link href="/">
+            <Image
+              src="/CCK_normal_circle.png"
+              alt="Computer Club Logo"
+              width={50}
+              height={50}
+              className={styles.logoImage}
+            />
+          </Link>
+          <div className={styles.logoText}>
+            <span className={styles.clubName}>Computer Club</span>
+            <span className={styles.universityName}>KMUTNB</span>
           </div>
-
-          {/* Hamburger */}
-          <div className={styles.hamburger} onClick={toggleMenu}>
-            <span className={styles.bar}></span>
-            <span className={styles.bar}></span>
-            <span className={styles.bar}></span>
-          </div>
-
-          {/* Navigation Links */}
-          <ul className={`${styles.navMenu} ${isOpen ? styles.active : ""}`}>
-            <li className={styles.navItem}>
-              <Link href="/" className={styles.navLink}>
-                หน้าแรก
-              </Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link href="/activities" className={styles.navLink}>
-                กิจกรรม
-              </Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link href="/about" className={styles.navLink}>
-                เกี่ยวกับเรา
-              </Link>
-            </li>
-          </ul>
         </div>
-      </nav>
+
+        <div className={styles.hamburger} onClick={toggleMenu}>
+          <span className={styles.bar}></span>
+          <span className={styles.bar}></span>
+          <span className={styles.bar}></span>
+        </div>
+
+        <ul className={`${styles.navMenu} ${isOpen ? styles.active : ""}`}>
+          <li className={styles.navItem}>
+            <Link href="/" className={styles.navLink}>
+              หน้าแรก
+            </Link>
+          </li>
+          <li className={styles.navItem}>
+            <Link href="/activities" className={styles.navLink}>
+              กิจกรรม
+            </Link>
+          </li>
+          <li className={styles.navItem}>
+            <Link href="/about" className={styles.navLink}>
+              เกี่ยวกับเรา
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </nav>
   );
 };
 

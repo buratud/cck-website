@@ -1,17 +1,17 @@
 .container {
     display: flex;
     flex-direction: row;
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
     background-color: #fbfbfb;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
     align-items: center;
     max-width: 800px;
     margin: 20px auto;
 }
   
 .image {
-    width: 150px;
+    width: 130px;
     height: 150px;
     border-radius: 15px;
     object-fit: cover;
@@ -62,11 +62,11 @@
   
 @media (max-width: 900px) {
     .title {
-        font-size: 20px;
+        font-size: 16px;
     }
     
     .description {
-        font-size: 14px;
+        font-size: 12px;
     }
     
     .button {
