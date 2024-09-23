@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './placeholder.module.css';
+import styles from './placeholder.module.scss';
 
 const Placeholder: React.FC = () => {
   return (

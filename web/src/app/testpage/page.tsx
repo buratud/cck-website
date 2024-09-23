@@ -3,7 +3,7 @@
 import Navbar from '@/app/components/navbar';
 import Footer from '@/app/components/footer';
 import Placeholder from '@/app/components/placeholder';
-import styles from './page.module.css';
+import styles from './page.module.scss';
 
 export default function Home() {
   return (
