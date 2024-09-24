@@ -3,6 +3,7 @@
 import Navbar from '@/app/components/navbar';
 import Footer from '@/app/components/footer';
 import Placeholder from '@/app/components/placeholder';
+import PageCover from '@/app/components/pagecover'; // Import the PageCover component
 import styles from './page.module.scss';
 
 export default function Home() {
@@ -10,28 +11,35 @@ export default function Home() {
     <div className={styles.pageWrapper}>
       <Navbar />
 
+      <PageCover
+        title="สวัสดี! นี่คือหน้าทดสอบ"
+        subtitle='"ปัญหามันคือปัญหารึเปล่า ขึ้นอยู่กับมึงจะมองว่ามันเป็นมั้ย" ~ Rookies111'
+        showButton={true} // Show the button
+      />
+
       <div className={styles.pageContainer}>
         <div className={styles.view}>
           <Placeholder
-            title="Dynamic Title 1"
+            title="Rookies111 successfully launches Nuclear missile!"
             description="This is the description for placeholder 1."
           />
           <Placeholder
-            title="Dynamic Title 2"
+            title="Is CCK a cult?"
             description="This is the description for placeholder 2."
           />
           <Placeholder
-            title="Dynamic Title 3"
+            title="Do you know that CCK is funded by no one?"
             description="This is the description for placeholder 3."
           />
           <Placeholder
-            title="Dynamic Title 4"
+            title="Our CEO got banned from the server!"
             description="This is the description for placeholder 4."
           />
         </div>
       </div>
 
       <Footer />
+
     </div>
   );
 }
