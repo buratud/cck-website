@@ -4,13 +4,14 @@ import styles from './placeholder.module.scss';
 interface PlaceholderProps {
   title: string;
   description: string;
+  imgsrc: string;
 }
 
-const Placeholder: React.FC<PlaceholderProps> = ({ title, description }) => {
+const Placeholder: React.FC<PlaceholderProps> = ({ title, description, imgsrc }) => {
   return (
     <div className={styles.container}>
       <img
-        src="/image.jpg"
+        src={imgsrc}
         alt="Placeholder"
         className={styles.image}
       />
