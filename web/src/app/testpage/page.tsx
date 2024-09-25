@@ -14,7 +14,7 @@ export default function Home() {
       <PageCover
         title="สวัสดี! นี่คือหน้าทดสอบ"
         subtitle='"ปัญหามันคือปัญหารึเปล่า ขึ้นอยู่กับมึงจะมองว่ามันเป็นมั้ย" ~ Rookies111'
-        showButton={false}
+        showButton={true}
       />
 
       <div className={styles.pageContainer}>
