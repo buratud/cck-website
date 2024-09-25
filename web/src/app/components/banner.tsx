@@ -1,14 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
-import styles from './pagecover.module.scss';
+import styles from './Banner.module.scss';
 
-interface PageCoverProps {
+interface BannerProps {
     title: string;
     subtitle: string;
     showButton?: boolean;
 }
 
-const PageCover: React.FC<PageCoverProps> = ({ title, subtitle, showButton = true }) => {
+const Banner: React.FC<BannerProps> = ({ title, subtitle, showButton = true }) => {
     return (
         <div className={styles.cover}>
             <div className={styles.content}>
@@ -24,4 +24,4 @@ const PageCover: React.FC<PageCoverProps> = ({ title, subtitle, showButton = tru
     );
 };
 
-export default PageCover;
+export default Banner;

@@ -3,7 +3,7 @@
 import Navbar from '@/app/components/navbar';
 import Footer from '@/app/components/footer';
 import Placeholder from '@/app/components/placeholder';
-import PageCover from '@/app/components/pagecover'; // Import the PageCover component
+import Banner from '@/app/components/banner'; // Import the PageCover component
 import styles from './page.module.scss';
 
 export default function Home() {
@@ -11,7 +11,7 @@ export default function Home() {
     <div className={styles.pageWrapper}>
       <Navbar />
 
-      <PageCover
+      <Banner
         title="สวัสดี! นี่คือหน้าทดสอบ"
         subtitle='"ปัญหามันคือปัญหารึเปล่า ขึ้นอยู่กับมึงจะมองว่ามันเป็นมั้ย" ~ Rookies111'
         showButton={true}
