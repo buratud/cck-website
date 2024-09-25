@@ -47,7 +47,7 @@
         height: 3px;
         background-color: white;
         margin: 4px 0;
-        transition: background-color 0.3s cubic-bezier(0.25, 1.0, 0.5, 1.0);
+        transition: background-color 0.3s cubic-bezier(0.25, 1, 0.5, 1);
       }
 
       &:hover .bar {
@@ -66,7 +66,7 @@
         .navLink {
           font-size: 1.1rem;
           color: white;
-          transition: color 0.3s cubic-bezier(0.25, 1.0, 0.5, 1.0);
+          transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 
           &:hover {
             color: #bafff8;
@@ -76,10 +76,16 @@
     }
   }
 
+  // Media Query for Smaller Screens
   @media (max-width: 900px) {
     .container {
       .logoText {
-        display: none;
+        .clubName {
+          display: none;
+        }
+        .universityName {
+          display: none;
+        }
       }
 
       .hamburger {
@@ -98,7 +104,7 @@
         justify-content: center;
         gap: 1.2rem;
         overflow: hidden;
-        transition: height 0.5s cubic-bezier(0.25, 1.0, 0.5, 1.0);
+        transition: height 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 
         &.active {
           height: 200px;
@@ -107,7 +113,7 @@
         .navLink {
           font-size: 1.1rem;
           color: white;
-          transition: color 0.3s cubic-bezier(0.25, 1.0, 0.5, 1.0);
+          transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 
           &:hover {
             color: #bafff8;
