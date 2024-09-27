@@ -20,14 +20,14 @@
       margin: 20px auto;
       max-width: 900px;
 
-      @media (max-width: 950px) {
-        grid-template-columns: 1fr 1fr;
-        padding-left: 48px;
-        padding-right: 48px;
-        max-width: 100%;
-      }
+      // @media (max-width: 950px) {
+      //   grid-template-columns: 1fr 1fr;
+      //   padding-left: 48px;
+      //   padding-right: 48px;
+      //   max-width: 100%;
+      // }
 
-      @media (max-width: 768px) {
+      @media (max-width: 900px) {
         grid-template-columns: 1fr;
         padding-left: 48px;
         padding-right: 48px;
