@@ -4,16 +4,16 @@
   padding: 0.8rem 2rem;
 
   .container {
-    max-width: 900px; // Adjust this value to the width you want
+    max-width: 900px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 1rem; // Optional padding
+    padding: 0 1rem;
 
     .leftSection,
     .rightSection {
-      flex: 1; // Both sections will take up equal width
+      flex: 1;
     }
 
     .leftSection {
@@ -29,12 +29,12 @@
         flex-direction: column;
 
         .clubName {
-          font-size: 0.85em; // Make the "Computer Club" text smaller
+          font-size: 0.85em;
           color: #000000;
         }
 
         .universityName {
-          font-size: 0.75em; // Adjust size of "KMUTNB" if needed
+          font-size: 0.75em;
           color: #000000;
         }
       }
@@ -42,7 +42,7 @@
 
     .centerSection {
       text-align: center;
-      font-size: 0.65rem; // Adjust size of "KMUTNB" if needed
+      font-size: 0.65rem;
       color: #000000;
       flex-grow: 1;
 
@@ -54,15 +54,13 @@
     .rightSection {
       display: flex;
       gap: 15px;
-      justify-content: flex-end; // Align icons to the right
-
+      justify-content: flex-end; 
       .socialIcon {
         cursor: pointer;
       }
     }
   }
 
-  // Media Query for Small Screens (750px and below)
   @media (max-width: 750px) {
     flex-direction: column;
     text-align: left;
@@ -87,17 +85,14 @@
         order: 1;
       }
 
-      // Align Logo and Text at the Top
       .logoSection {
         justify-content: center;
       }
 
-      // Social Media Icons in the Middle
       .socialSection {
         justify-content: center;
       }
 
-      // Copyright Text at the Bottom
       .copyrightSection {
         text-align: center;
       }
