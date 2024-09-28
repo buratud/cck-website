@@ -12,31 +12,52 @@ export default function Home() {
       <Navbar />
 
       <Banner
-        title="สวัสดี! นี่คือหน้าทดสอบ"
-        subtitle='"ปัญหามันคือปัญหารึเปล่า ขึ้นอยู่กับมึงจะมองว่ามันเป็นมั้ย" ~ Rookies111'
-        showButton={true}
+        title="เกี่ยวกับเรา"
+        subtitle='บอกให้เขารู้ว่าเราเป็นใคร'
+        showButton={false}
       />
 
       <div className={styles.pageContainer}>
+        <div className={styles.title2}>เกี่ยวกับเรา</div>
         <div className={styles.view}>
           <Placeholder
-            title="Rookies111 successfully launches Nuclear missile!"
-            description="This is the description for placeholder 1."
+            title="นายชัยภัทร พันธุ์ประเสริฐ"
+            description="ประธานชมรมคอมพิวเตอร์"
             imgsrc='/image.jpg'
           />
           <Placeholder
-            title="Is CCK a cult?"
-            description="This is the description for placeholder 2."
+            title="นายชนาธิป ยอดเขื่อง"
+            description="รองประธานชมรมคอมพิวเตอร์"
             imgsrc='/image.jpg'
           />
           <Placeholder
-            title="Do you know that CCK is funded by no one?"
-            description="This is the description for placeholder 3."
+            title="นายคุณาพจน์ สุทธินนท์"
+            description="เลขาธิการ"
             imgsrc='/image.jpg'
           />
           <Placeholder
-            title="Our CEO got banned from the server!"
-            description="This is the description for placeholder 4."
+            title="นายณัฐกานต์	คุ้มสุภา"
+            description="เหรัญญิก"
+            imgsrc='/image.jpg'
+          />
+          <Placeholder
+            title="นายภูมินทร์	สิทธิวรานนท์"
+            description="ประสานงานภายใน"
+            imgsrc='/image.jpg'
+          />
+          <Placeholder
+            title="นายฐาปณวัฒน์ ม่วงศรี"
+            description="ประสานงานภายนอก"
+            imgsrc='/image.jpg'
+          />
+          <Placeholder
+            title="นายภูตะวัน จันทร์เรือง"
+            description="ประชาสัมพันธ์"
+            imgsrc='/image.jpg'
+          />
+          <Placeholder
+            title="นายสิรภพ	จอมปินตา"
+            description="กรรมการ"
             imgsrc='/image.jpg'
           />
         </div>
