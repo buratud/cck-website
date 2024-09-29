@@ -2,6 +2,22 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  animation: waveFadeIn 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+
+  @keyframes waveFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    40% {
+      opacity: 0.7;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) rotate(0);
+    }
+  }
 
   .pageContainer {
     flex: 1;
@@ -15,6 +31,7 @@
       font-weight: bold;
       text-align: center;
       color: #000;
+      animation: waveFadeIn 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.2s;
     }
 
     .view {
@@ -25,6 +42,7 @@
       padding-right: 16px;
       margin: 20px auto;
       max-width: 900px;
+      animation: waveFadeIn 1.3s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.4s;
 
       @media (max-width: 950px) {
         grid-template-columns: 1fr 1fr;
@@ -49,4 +67,21 @@
   padding: 10px 20px;
   text-align: center;
   font-size: 18px;
+  opacity: 0;
+  animation: waveFadeIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.1s;
+
+  @keyframes waveFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    40% {
+      opacity: 0.7;
+      transform: translateY(5px); 
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) rotate(0);
+    }
+  }
 }
