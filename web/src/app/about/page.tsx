@@ -24,41 +24,49 @@ export default function Home() {
             title="นายชัยภัทร พันธุ์ประเสริฐ"
             description="ประธานชมรมคอมพิวเตอร์"
             imgsrc='/image.jpg'
+            showButton={false}
           />
           <Placeholder
             title="นายชนาธิป ยอดเขื่อง"
             description="รองประธานชมรมคอมพิวเตอร์"
             imgsrc='/image.jpg'
+            showButton={false}
           />
           <Placeholder
             title="นายคุณาพจน์ สุทธินนท์"
             description="เลขาธิการ"
             imgsrc='/image.jpg'
+            showButton={false}
           />
           <Placeholder
             title="นายณัฐกานต์	คุ้มสุภา"
             description="เหรัญญิก"
             imgsrc='/image.jpg'
+            showButton={false}
           />
           <Placeholder
             title="นายภูมินทร์	สิทธิวรานนท์"
             description="ประสานงานภายใน"
             imgsrc='/image.jpg'
+            showButton={false}
           />
           <Placeholder
             title="นายฐาปณวัฒน์ ม่วงศรี"
             description="ประสานงานภายนอก"
             imgsrc='/image.jpg'
+            showButton={false}
           />
           <Placeholder
             title="นายภูตะวัน จันทร์เรือง"
             description="ประชาสัมพันธ์"
             imgsrc='/image.jpg'
+            showButton={false}
           />
           <Placeholder
             title="นายสิรภพ	จอมปินตา"
             description="กรรมการ"
             imgsrc='/image.jpg'
+            showButton={false}
           />
         </div>
       </div>
