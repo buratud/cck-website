@@ -23,21 +23,25 @@ export default function Home() {
             title="Rookies111 successfully launches Nuclear missile!"
             description="This is the description for placeholder 1."
             imgsrc='/image.jpg'
+            showButton={true}
           />
           <Placeholder
             title="Is CCK a cult?"
             description="This is the description for placeholder 2."
             imgsrc='/image.jpg'
+            showButton={true}
           />
           <Placeholder
             title="Do you know that CCK is funded by no one?"
             description="This is the description for placeholder 3."
             imgsrc='/image.jpg'
+            showButton={true}
           />
           <Placeholder
             title="Our CEO got banned from the server!"
             description="This is the description for placeholder 4."
             imgsrc='/image.jpg'
+            showButton={true}
           />
         </div>
       </div>
