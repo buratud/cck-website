@@ -5,9 +5,10 @@ interface PlaceholderProps {
   title: string;
   description: string;
   imgsrc: string;
+  showButton?: boolean; // Optional prop to control button visibility
 }
 
-const Placeholder: React.FC<PlaceholderProps> = ({ title, description, imgsrc }) => {
+const Placeholder: React.FC<PlaceholderProps> = ({ title, description, imgsrc, showButton = true }) => {
   return (
     <div className={styles.container}>
       <img
@@ -20,7 +21,10 @@ const Placeholder: React.FC<PlaceholderProps> = ({ title, description, imgsrc })
         <p className={styles.description}>
           {description}
         </p>
-        <button className={styles.button}>Button</button>
+        {/* Render the button conditionally based on showButton prop */}
+        {showButton && (
+          <button className={styles.button}>Button</button>
+        )}
       </div>
     </div>
   );

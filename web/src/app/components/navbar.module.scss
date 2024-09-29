@@ -3,9 +3,6 @@
   color: white;
   padding: 0.4rem 2rem;
   z-index: 1000;
-  position: fixed;
-  top: 0;
-  width: 100%;
 
   .container {
     max-width: 900px;
@@ -79,7 +76,6 @@
     }
   }
 
-  // Media Query for Smaller Screens
   @media (max-width: 900px) {
     .container {
       .logoText {
