@@ -24,7 +24,7 @@ router.post("/",async (req : any , res : any) => {
         }).setProtectedHeader({alg:"HS256"}).setIssuedAt().setExpirationTime('2h').sign(accesskey)
         const refreshjwt = await new jose.SignJWT({
             "username" : username
-        }).setProtectedHeader({alg:"HS256"}).setIssuedAt().setExpirationTime('2h').sign(refreshkey) 
+        }).setProtectedHeader({alg:"HS256"}).setIssuedAt().setExpirationTime('1w').sign(refreshkey) 
         res.send({
             "accesskey":accessjwt,
             "refreshkey":refreshjwt
