@@ -24,24 +24,32 @@ export default function Home() {
             description="This is the description for placeholder 1."
             imgsrc='/image.jpg'
             showButton={true}
+            buttonLink='https://youtu.be/dQw4w9WgXcQ?feature=shared'
+            buttonText='Learn More'
           />
           <Placeholder
             title="Is CCK a cult?"
             description="This is the description for placeholder 2."
             imgsrc='/image.jpg'
             showButton={true}
+            buttonLink='/'
+            buttonText='Learn More'
           />
           <Placeholder
             title="Do you know that CCK is funded by no one?"
             description="This is the description for placeholder 3."
             imgsrc='/image.jpg'
             showButton={true}
+            buttonLink='/'
+            buttonText='Learn More'
           />
           <Placeholder
             title="Our CEO got banned from the server!"
             description="This is the description for placeholder 4."
             imgsrc='/image.jpg'
             showButton={true}
+            buttonLink='https://youtu.be/dQw4w9WgXcQ?feature=shared'
+            buttonText='Learn More'
           />
         </div>
       </div>
