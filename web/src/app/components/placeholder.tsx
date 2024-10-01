@@ -5,10 +5,19 @@ interface PlaceholderProps {
   title: string;
   description: string;
   imgsrc: string;
-  showButton?: boolean; // Optional prop to control button visibility
+  showButton?: boolean;
+  buttonLink?: string;
+  buttonText?: string; // Optional prop for custom button text
 }
 
-const Placeholder: React.FC<PlaceholderProps> = ({ title, description, imgsrc, showButton = true }) => {
+const Placeholder: React.FC<PlaceholderProps> = ({ 
+  title, 
+  description, 
+  imgsrc, 
+  showButton = true, 
+  buttonLink, 
+  buttonText = 'Button' // Default button text
+}) => {
   return (
     <div className={styles.container}>
       <img
@@ -21,9 +30,10 @@ const Placeholder: React.FC<PlaceholderProps> = ({ title, description, imgsrc, s
         <p className={styles.description}>
           {description}
         </p>
-        {/* Render the button conditionally based on showButton prop */}
-        {showButton && (
-          <button className={styles.button}>Button</button>
+        {showButton && buttonLink && (
+          <a href={buttonLink} className={styles.button}>
+            {buttonText} {/* Render the custom or default button text */}
+          </a>
         )}
       </div>
     </div>
