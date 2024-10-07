@@ -18,6 +18,15 @@ export default function Home() {
       />
 
       <div className={styles.pageContainer}>
+        <div className={styles.title2}>เกี่ยวกับเรา</div>
+        <div className={styles.headview}>
+          <AboutPlaceholder
+            title="ศ.ดร. ณชล ไชยรัตนะ"
+            description="อาจารย์ที่ปรึกษา"
+            email="nachol.c@eng.kmutnb.ac.th"
+            imgsrc='https://ece.eng.kmutnb.ac.th/en/wp-content/uploads/2023/08/อ.ณชล.png'
+          />
+        </div>
         <div className={styles.title2}>คณะกรรมการชมรม</div>
         <div className={styles.view}>
           <AboutPlaceholder
@@ -67,6 +76,12 @@ export default function Home() {
             description="กรรมการ"
             email="s6501012620101@email.kmutnb.ac.th"
             imgsrc='https://1drv.ms/i/s!AqackJQOQ0zzg7dYtTMq4zrigoFwHQ?embed=1&width=160&height=200'
+          />
+          <AboutPlaceholder
+            title="นายบุรธัช ทำบุญ"
+            description="กรรมการ"
+            email="s6501012610076@email.kmutnb.ac.th"
+            imgsrc='https://1drv.ms/i/s!AqackJQOQ0zzg7dVnQS9P8n3sl_EfQ?embed=1&width=160&height=200'
           />
         </div>
       </div>
