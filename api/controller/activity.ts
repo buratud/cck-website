@@ -3,8 +3,19 @@ import database from "../config/db";
 import validaccesstoken from "./middleware";
 import { ObjectId } from "mongodb";
 import { Query } from "mongoose";
+import multer from "multer";
 
 const router = express.Router()
+
+const upload = multer({storage : multer.diskStorage({
+    destination(req,file,cb){
+        cb(null,'./pictures/activity')
+    },
+    filename(req, file, callback) {
+        callback(null,file.originalname)
+    },
+
+})})
 
 
 router.get("",async (req : any , res : any )=> {
@@ -26,12 +37,24 @@ router.get("/:id",async (req : express.Request , res : express.Response) => {
 })
 
 
-router.post("",validaccesstoken,async (req : express.Request ,res : express.Response )=> {
-    const {title, description, image} = req.body
-    const query = {title,description,image}
-    const activity = database.collection('activity');
-    const data =  await activity.insertOne(query)
-    res.status(201).send(data)
+router.post("",validaccesstoken,upload.array('file'),async (req : express.Request ,res : express.Response )=> {
+    const {name,description = null} = req.body;
+    const files = req.files as unknown as File[]
+    let listfile :String[] = [] as unknown as String[]
+    if (files?.length != 0){
+        for(const data of files){
+            const name = data.destination+'/'+data.originalname
+            listfile.push(name.slice(1))
+        }
+    }
+    console.log(listfile)
+    const query = {name,description,images:listfile}
+    const activity = database.collection('activity')
+    const data = await activity.insertOne(query)
+    res.send(data)
 })
+
+
+
 
 export default router

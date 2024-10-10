@@ -8,7 +8,7 @@ import activity from "./controller/activity"
 import refresh from "./controller/refreshtoken"
 const app = express();
 
-
+app.use('/pictures',express.static('pictures'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); 
 
