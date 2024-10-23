@@ -18,6 +18,7 @@ const validaccesstoken = async (req: express.Request, res: express.Response, nex
         next();
     } catch (err) {
         console.error('JWT Verification failed:', err);
+        res.status(401).json({ message: 'Invalid or expired token' });
     }
 }
 
