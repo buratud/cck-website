@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import 'dotenv/config'
 import login  from "./controller/login";
 import announcement from "./controller/announcement"
+import announcements from "./controller/announcements"
 import member from "./controller/member"
 import activity from "./controller/activity"
 import refresh from "./controller/refreshtoken"
@@ -25,6 +26,7 @@ app.get("/", (req : any, res : any) => {
 
 app.use("/login",login)
 app.use("/announcement",announcement)
+app.use("announcements",announcements)
 app.use("/member",member)
 app.use("/activity",activity)
 app.use("/refresh",refresh)
