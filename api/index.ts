@@ -6,7 +6,11 @@ import announcement from "./controller/announcement"
 import announcements from "./controller/announcements"
 import member from "./controller/member"
 import activity from "./controller/activity"
+import activities from "./controller/activities"
 import refresh from "./controller/refreshtoken"
+import members from "./controller/members"
+import admin from "./controller/admin"
+import admins from "./controller/admins"
 import * as fs from 'node:fs';
 const app = express();
 const folderpath = ["./pictures/activity","./pictures/announcement","./pictures/member"]
@@ -27,9 +31,13 @@ app.get("/", (req : any, res : any) => {
 app.use("/login",login)
 app.use("/announcement",announcement)
 app.use("announcements",announcements)
+app.use("/members",members)
 app.use("/member",member)
 app.use("/activity",activity)
+app.use("/activitise",activities)
 app.use("/refresh",refresh)
+app.use("/admin",admin)
+app.use("/admins",admins)
 
 for (const i of folderpath){
   console.log(i);
