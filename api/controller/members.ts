@@ -49,6 +49,19 @@ router.post("/",validaccesstoken,upload.array('file'),async (req : express.Reque
 })
 
 
-// router.delete("/",validaccesstoken,)
+router.delete("/",async (req :express.Request , res : express.Response)=>{
+    console.log("delete");
+    // delete all member 
+    const member = database.collection('member')
+    try {
+        const data = await member.deleteMany({})
+        res.send(data)
+    }
+    catch (error) {
+        console.log(`error on : ${error}`);
+        res.status(500).send(`error on ": ${error}`)
+        
+    }
+} )
 
 export default router
