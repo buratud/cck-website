@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
           </div>
         </div>
 
-        <div className={styles.hamburger} onClick={toggleMenu}>
+        <div className={styles.hamburger} onClick={toggleMenu} role="button" aria-label="menu">
           <span className={styles.bar}></span>
           <span className={styles.bar}></span>
           <span className={styles.bar}></span>
