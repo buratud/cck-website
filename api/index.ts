@@ -30,7 +30,7 @@ app.get("/", (req : any, res : any) => {
 
 app.use("/login",login)
 app.use("/announcement",announcement)
-app.use("announcements",announcements)
+app.use("/announcements",announcements)
 app.use("/members",members)
 app.use("/member",member)
 app.use("/activity",activity)
