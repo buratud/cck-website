@@ -2,7 +2,8 @@ import express from "express";
 import database from "../config/db";
 import validaccesstoken from "./middleware";
 import multer from "multer";
-
+import { randomUUID } from 'crypto';
+import {renameSync } from 'fs'
 
 const router = express.Router()
 
@@ -30,9 +31,15 @@ router.post("/",validaccesstoken,upload.array('file'),async (req : express.Reque
     const files = req.files as unknown as File[]
     let listfile :String[] = [] as unknown as String[]
     if (files?.length != 0){
-        for(const data of files){
-            const name = data.destination+'/'+data.originalname
-            listfile.push(name.slice(1))
+        for (const data of files) {
+            const uuid = randomUUID();
+            const [name, extension] = data.originalname.split('.');
+            const oldname = data.destination + '/' + data.originalname
+            const newname = data.destination + '/' + name + uuid + "." + extension
+            console.log(oldname);
+            console.log(newname);
+            renameSync(oldname,newname)
+            listfile.push(newname.slice(1))
         }
     }
     console.log(listfile)

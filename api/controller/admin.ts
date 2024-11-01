@@ -23,7 +23,15 @@ router.put("/:id", validaccesstoken, async (req: express.Request, res: express.R
     const { username, password } = req.body
     const user = database.collection('user')
     const params = req.params as unknown as string
-    const Objectid = new ObjectId(params)
+    let Objectid;
+    try {
+        Objectid = new ObjectId(params)
+    }
+    catch (error) {
+        console.log(`error on ObjectId`);
+        res.status(400).send(`error on ObjectId`)
+        
+    }
     const hashed = await Bun.password.hash(password)
     const filter = { _id: Objectid }
     const update = {

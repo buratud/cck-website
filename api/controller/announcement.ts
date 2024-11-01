@@ -3,6 +3,8 @@ import database from "../config/db";
 import { ObjectId } from "mongodb";
 import validaccesstoken from "./middleware";
 import multer from "multer";
+import { randomUUID } from 'crypto';
+import {renameSync } from 'fs'
 
 const router = express.Router()
 
@@ -38,8 +40,14 @@ router.post("/", validaccesstoken, upload.array('file'), async (req: express.Req
     let listfile: String[] = [] as unknown as String[]
     if (files?.length != 0) {
         for (const data of files) {
-            const name = data.destination + '/' + data.originalname
-            listfile.push(name.slice(1))
+            const uuid = randomUUID();
+            const [name, extension] = data.originalname.split('.');
+            const oldname = data.destination + '/' + data.originalname
+            const newname = data.destination + '/' + name + uuid + "." + extension
+            console.log(oldname);
+            console.log(newname);
+            renameSync(oldname,newname)
+            listfile.push(newname.slice(1))
         }
     }
     console.log(listfile)
@@ -59,14 +67,28 @@ router.put("/:id", validaccesstoken, upload.array('file') ,async (req: express.R
     const { name, description } = req.body
     const files = req.files as unknown as File[]
     let listfile: String[] = [] as unknown as String[]
+    let Objectid ;
     if (files?.length != 0) {
         for (const data of files) {
-            const name = data.destination + '/' + data.originalname
-            listfile.push(name.slice(1))
+            const uuid = randomUUID();
+            const [name, extension] = data.originalname.split('.');
+            const oldname = data.destination + '/' + data.originalname
+            const newname = data.destination + '/' + name + uuid + "." + extension
+            console.log(oldname);
+            console.log(newname);
+            renameSync(oldname,newname)
+            listfile.push(newname.slice(1))
         }
     }
     const params = req.params as unknown as string
-    const Objectid = new ObjectId(params)
+    try {
+        Objectid = new ObjectId(params)
+    }
+    catch (error) {
+        console.log(`error on ObjectId`);
+        res.status(400).send(`error on ObjectId`)
+        
+    }
     const filter = { _id: Objectid }
     const update = {
         $set: {
@@ -89,7 +111,15 @@ router.put("/:id", validaccesstoken, upload.array('file') ,async (req: express.R
 
 router.delete("/:id",validaccesstoken,async (req: express.Request, res: express.Response) => {
     const params = req.params as unknown as string
-    const Objectid = new ObjectId(params)
+    let Objectid;
+    try {
+        Objectid = new ObjectId(params)
+    }
+    catch (error) {
+        console.log(`error on ObjectId`);
+        res.status(400).send(`error on ObjectId`)
+        
+    }
     const filter = { _id: Objectid }
     const announcement = database.collection('announcement')
     try {
@@ -103,3 +133,4 @@ router.delete("/:id",validaccesstoken,async (req: express.Request, res: express.
 })
 
 export default router
+
