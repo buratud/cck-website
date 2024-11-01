@@ -33,7 +33,7 @@ router.get("/:id",async (req : express.Request , res : express.Response) => {
 
 router.post("/", validaccesstoken, upload.array('file'), async (req: express.Request, res: express.Response) => {
     const { name, description = null } = req.body;
-    const files = req.files as unknown as File[]
+    const files = req.files as Express.Multer.File[]
     let listfile: String[] = [] as unknown as String[]
     if (files?.length != 0) {
         for (const data of files) {
@@ -64,7 +64,7 @@ router.post("/", validaccesstoken, upload.array('file'), async (req: express.Req
 
 router.put("/:id",validaccesstoken,upload.array('file'),async (req : express.Request ,res : express.Response )=> {
     const { name, description } = req.body
-    const files = req.files as unknown as File[]
+    const files = req.files as Express.Multer.File[]
     let listfile: String[] = [] as unknown as String[]
     let Objectid ;
     if (files?.length != 0) {

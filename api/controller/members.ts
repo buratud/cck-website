@@ -28,7 +28,7 @@ router.get("/",validaccesstoken,async (req: express.Request, res : express.Respo
 
 router.post("/",validaccesstoken,upload.array('file'),async (req : express.Request, res :express.Response) => {
     const {name,description = null} = req.body;
-    const files = req.files as unknown as File[]
+    const files = req.files as Express.Multer.File[]
     let listfile :String[] = [] as unknown as String[]
     if (files?.length != 0){
         for (const data of files) {
