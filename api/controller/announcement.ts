@@ -32,7 +32,7 @@ router.get("/:id",async (req : express.Request , res : express.Response) => {
 
 
 
-router.post("", validaccesstoken, upload.array('file'), async (req: express.Request, res: express.Response) => {
+router.post("/", validaccesstoken, upload.array('file'), async (req: express.Request, res: express.Response) => {
     const { name, description = null } = req.body;
     const files = req.files as unknown as File[]
     let listfile: String[] = [] as unknown as String[]

@@ -3,7 +3,7 @@ import database from "../config/db";
 
 const router = express.Router()
 
-router.get("", async (req: any, res: any) => {
+router.get("/", async (req: any, res: any) => {
     try {
         const data = await database.collection('announcement').find({}).toArray()
         res.send(data)

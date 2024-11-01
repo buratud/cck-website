@@ -29,24 +29,30 @@ router.get("/:id",async (req : express.Request , res : express.Response) => {
 })
 
 
-router.post("",validaccesstoken,upload.array('file'),async (req : express.Request ,res : express.Response )=> {
-    const {name,description = null} = req.body;
+router.post("/", validaccesstoken, upload.array('file'), async (req: express.Request, res: express.Response) => {
+    const { name, description = null } = req.body;
     const files = req.files as unknown as File[]
-    let listfile :String[] = [] as unknown as String[]
-    if (files?.length != 0){
-        for(const data of files){
-            const name = data.destination+'/'+data.originalname
+    let listfile: String[] = [] as unknown as String[]
+    if (files?.length != 0) {
+        for (const data of files) {
+            const name = data.destination + '/' + data.originalname
             listfile.push(name.slice(1))
         }
     }
     console.log(listfile)
-    const query = {name,description,images:listfile}
-    const activity = database.collection('activity')
-    const data = await activity.insertOne(query)
-    res.send(data)
+    const query = { name, description, images: listfile }
+    const announcement = database.collection('activity')
+    try {
+        const data = await announcement.insertOne(query)
+        res.status(201).send(data)
+    }
+    catch (error) {
+        console.log(`error on : ${error}`);
+        res.status(500).send(`error on : ${error}`)
+     }
 })
 
-router.put("/:id",validaccesstoken,async (req : express.Request ,res : express.Response )=> {
+router.put("/:id",validaccesstoken,upload.array('file'),async (req : express.Request ,res : express.Response )=> {
     const { name, description } = req.body
     const files = req.files as unknown as File[]
     let listfile: String[] = [] as unknown as String[]

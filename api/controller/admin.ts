@@ -12,7 +12,7 @@ router.post("", validaccesstoken, async (req: express.Request, res: express.Resp
     const query = { username, password: hashed }
     try {
         const data = await database.collection('user').insertOne(query)
-        res.send(data)
+        res.status(201).send(data)
     } catch (error) {
         console.log(`error on : ${error}`);
         res.status(500).send(`error on : ${error}`)
@@ -54,7 +54,7 @@ router.delete("/", validaccesstoken, async (req: express.Request, res: express.R
         }
         else {
             const data = await user.deleteOne({ username })
-            res.status(200).send("delete user success")
+            res.status(200).send(data)
         }
 
     }

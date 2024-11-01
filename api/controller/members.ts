@@ -40,7 +40,7 @@ router.post("/",validaccesstoken,upload.array('file'),async (req : express.Reque
     const member = database.collection('member')
     try {
         const data = await member.insertOne(query)
-        res.status(200).send(data)
+        res.status(201).send(data)
     }
     catch (error) {
         console.log(`error on : ${error}`);
@@ -50,8 +50,6 @@ router.post("/",validaccesstoken,upload.array('file'),async (req : express.Reque
 
 
 router.delete("/",async (req :express.Request , res : express.Response)=>{
-    console.log("delete");
-    // delete all member 
     const member = database.collection('member')
     try {
         const data = await member.deleteMany({})
