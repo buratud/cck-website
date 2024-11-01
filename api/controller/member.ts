@@ -21,7 +21,7 @@ const upload = multer({storage : multer.diskStorage({
 
 router.put("/:id",validaccesstoken,upload.array('file'),async (req : express.Request,res :express.Response)=>{
     const { name, description } = req.body
-    const files = req.files as unknown as File[]
+    const files = req.files as Express.Multer.File[]
     let Objectid
     let listfile: String[] = [] as unknown as String[]
     if (files?.length != 0) {
