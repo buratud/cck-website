@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './about_placeholder.module.scss';
 
 interface AboutPlaceholderProps {
@@ -15,27 +15,33 @@ const AboutPlaceholder: React.FC<AboutPlaceholderProps> = ({
     email
 }) => {
     const [copied, setCopied] = useState(false);
+    const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsSmallScreen(window.innerWidth <= 700);
+        };
+        handleResize(); // Check initially
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const copyEmailToClipboard = () => {
         navigator.clipboard.writeText(email);
         setCopied(true);
-
-        // Reset the copied state after a delay (e.g., 2 seconds)
-        setTimeout(() => {
-            setCopied(false);
-        }, 2000);
+        setTimeout(() => setCopied(false), 2000);
     };
 
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} ${isSmallScreen ? 'responsive-container' : ''}`}>
             <img
                 src={imgsrc}
                 alt="Placeholder"
                 className={styles.image}
             />
             <div className={styles.textContainer}>
-                <h2 className={styles.title}>{title}</h2>
-                <p className={styles.description}>
+                <h2 className={`${styles.title} ${isSmallScreen ? 'responsive-title' : ''}`}>{title}</h2>
+                <p className={`${styles.description} ${isSmallScreen ? 'responsive-description' : ''}`}>
                     {description}
                 </p>
                 <p
