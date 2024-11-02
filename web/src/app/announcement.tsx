@@ -30,7 +30,7 @@ async function Announcement() {
   return (
     <>
       {announcements.map((announcement) => {
-        const imageBanner = announcement.images.length > 0 ? `${BASE_API_URL}${announcement.images[0]}` : '/image.jpg';
+        const imageBanner = announcement.images.length > 0 ? `${BASE_API_URL}${announcement.images[0]}` : '/no_image_available.png';
         return <div key={announcement._id}>
           <Placeholder
             title={announcement.name}
