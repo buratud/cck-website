@@ -19,6 +19,16 @@ export default function Home() {
 
       <div className={styles.pageContainer}>
         <div className={styles.title2}>เกี่ยวกับเรา</div>
+
+          <p className={styles.description}>
+            ชมรมคอมพิวเตอร์ KMUTNB มุ่งมั่นที่จะสร้างสรรค์ชุมชนของคนที่หลงใหลในเทคโนโลยีและมีความปรารถนาที่จะใช้มันเพื่อสร้างการเปลี่ยนแปลงในทางที่ดี มาร่วมกับเราเพื่อสำรวจ เรียนรู้ และเติบโตทักษะด้านเทคโนโลยีของคุณให้ก้าวไกลไปพร้อมกับพวกเรา!
+          </p>
+          <p className={styles.description}>
+            Facebook: Computer Club KMUTNB <br />
+            Instagram: @comclub_kmutnb
+          </p>
+
+        <div className={styles.title2}>อาจารย์ที่ปรึกษาชมรม</div>
         <div className={styles.headview}>
           <AboutPlaceholder
             title="ศ.ดร. ณชล ไชยรัตนะ"
