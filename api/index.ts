@@ -12,6 +12,8 @@ import admin from "./controller/admin"
 import admins from "./controller/admins"
 import * as fs from 'node:fs';
 import { logger } from "./controller/config";
+import cors from 'cors'
+
 const app = express();
 const folderpath = ["./static/activity", "./static/announcement", "./static/member"]
 
@@ -50,7 +52,3 @@ for (const i of folderpath) {
 app.listen(port, () => {
   logger.info(`Listening on port ${port}...`);
 });
-
-function cors(): any {
-  throw new Error("Function not implemented.");
-}
