@@ -12,26 +12,26 @@ router.post("/", async (req: express.Request, res: express.Response) => {
     const data = await user.findOne(query)
     if (!data) {
         res.status(404).send({
-            "message": "usernmae or password are incorrect"
+            "error": "invalid username or password"
         })
     } else {
         if (await Bun.password.verify(password, data.password)) {
             const accesskey = new TextEncoder().encode(process.env.accesskey)
             const refreshkey = new TextEncoder().encode(process.env.refreshkey)
-            const accessjwt = await new jose.SignJWT({
+            const accessToken = await new jose.SignJWT({
                 "username": username
             }).setProtectedHeader({ alg: "HS256" }).setIssuedAt().setExpirationTime('2h').sign(accesskey)
-            const refreshjwt = await new jose.SignJWT({
+            const refreshToken = await new jose.SignJWT({
                 "username": username
             }).setProtectedHeader({ alg: "HS256" }).setIssuedAt().setExpirationTime('1w').sign(refreshkey)
             res.send({
-                "accesskey": accessjwt,
-                "refreshkey": refreshjwt
+                "access_token": accessToken,
+                "refresh_token": refreshToken
             })
         }
         else {
             res.status(404).send({
-                "message": "usernmae or password are incorrect"
+                "error": "invalid username or password"
             })
         }
     }
