@@ -67,7 +67,7 @@ router.post("/", validaccesstoken, upload.array('file'), async (req: express.Req
     const announcement = database.collection('announcement')
     try {
         const data = await announcement.insertOne(query)
-        res.status(201).send({ "id": data.insertedId })
+        res.status(201).send({ "message": "OK", "id": data.insertedId })
     }
     catch (error) {
         logger.error(`${error}`);
@@ -117,7 +117,7 @@ router.put("/:id", validaccesstoken, upload.array('file'), async (req: express.R
     const announcement = database.collection('announcement')
     try {
         const data = await announcement.updateOne(filter, update)
-        if (data.modifiedCount == 0) {
+        if (data.matchedCount == 0) {
             res.status(404).send({ "error": "not Found" })
         } else {
             res.status(200).send({ "message": "OK" })
