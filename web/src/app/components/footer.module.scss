@@ -1,0 +1,101 @@
+.footer {
+  background-color: #D9D9D9;
+  color: white;
+  padding: 0.8rem 2rem;
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+
+    .leftSection,
+    .rightSection {
+      flex: 1;
+    }
+
+    .leftSection {
+      display: flex;
+      align-items: center;
+
+      .logoImage {
+        margin-right: 10px;
+      }
+
+      .logoText {
+        display: flex;
+        flex-direction: column;
+
+        .clubName {
+          font-size: 0.85em;
+          color: #000000;
+        }
+
+        .universityName {
+          font-size: 0.75em;
+          color: #000000;
+        }
+      }
+    }
+
+    .centerSection {
+      text-align: center;
+      font-size: 0.65rem;
+      color: #000000;
+      flex-grow: 1;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    .rightSection {
+      display: flex;
+      gap: 15px;
+      justify-content: flex-end; 
+      .socialIcon {
+        cursor: pointer;
+      }
+    }
+  }
+
+  @media (max-width: 750px) {
+    flex-direction: column;
+    text-align: left;
+
+    .container {
+      flex-direction: column;
+
+      .leftSection {
+        margin: 0.3rem;
+        order: 2;
+      }
+
+      .centerSection {
+        margin: 0.3rem;
+        order: 3;
+        font-size: 0.65rem;
+      }
+
+      .rightSection {
+        margin: 0.5rem;
+        margin-bottom: 1.5rem;
+        order: 1;
+      }
+
+      .logoSection {
+        justify-content: center;
+      }
+
+      .socialSection {
+        justify-content: center;
+      }
+
+      .copyrightSection {
+        text-align: center;
+      }
+    }
+  }
+}
