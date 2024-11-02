@@ -4,7 +4,7 @@ import styles from './detail-page.module.scss';
 
 export default function DetailPageSkeleton() {
     return (
-        <div className={styles.container}>
+        <div>
             <div className={`${styles.image} ${styles.skeleton}`} />
             <div className={`${styles.title} ${styles.skeleton}`} />
             {[1, 2, 3, 4, 5].map((i) => (
