@@ -1,0 +1,38 @@
+'use server';
+
+import { getAnnouncement, getAnnouncements } from "@/app/api/announcements";
+import Navbar from "@/app/components/navbar";
+import DetailPageSkeleton from "@/app/components/skeletons/detail-page";
+import { BASE_API_URL } from "@/app/config";
+import Image from "next/image";
+import { Suspense } from "react";
+import styles from './styles.module.scss';
+
+export default async function AnnouncementDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    return (
+        <>
+            <Suspense fallback={<DetailPageSkeleton />}>
+                <Announcement id={id} />
+            </Suspense>
+        </>
+    );
+}
+
+async function Announcement({ id }: { id: string }) {
+    const announcement = await getAnnouncement(id);
+    return (
+        <div className={`${styles.container}`}>
+            {announcement.images.length > 0 && (
+                <Image src={`${BASE_API_URL}${announcement.images[0]}`}
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    className={`${styles.image}`}
+                    alt={announcement.name} />
+            )}
+            <h1 className={`${styles.title}`}>{announcement.name}</h1>
+            <p className={`${styles.description}`}>{announcement.description}</p>
+        </div>
+    );
+}

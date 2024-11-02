@@ -1,0 +1,53 @@
+.container {
+    padding: 30px;
+    min-height: calc(100vh - 126.8px);
+}
+
+.image {
+    width: 500px;
+    height: 300px;
+    margin: 0 auto 2em auto;
+}
+
+.title {
+    height: 3em;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+.description {
+    height: 1em;
+    width: 100%;
+    margin-top: 0.5em;
+}
+
+.skeleton {
+    background: #e0e0e0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px; // Optional, for rounded skeleton effect
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -150%; // Start the animation off-screen
+        height: 100%;
+        width: 150%;
+        background: linear-gradient(90deg,
+                rgba(224, 224, 224, 0) 30%,
+                rgba(177, 177, 177, 0.8) 50%,
+                rgba(224, 224, 224, 0) 70%);
+        animation: skeleton-wave 2s infinite;
+    }
+}
+
+@keyframes skeleton-wave {
+    0% {
+        left: -150%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
