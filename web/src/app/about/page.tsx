@@ -6,7 +6,7 @@ import AboutPlaceholder from '@/app/components/about_placeholder';
 import Banner from '@/app/components/banner'; // Import the PageCover component
 import styles from './page.module.scss';
 
-export default function Home() {
+export default function About() {
   return (
     <div className={styles.pageWrapper}>
       <Navbar />
