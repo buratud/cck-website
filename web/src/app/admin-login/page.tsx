@@ -1,11 +1,11 @@
 'use client';
 
-import Footer from '@/app/components/footer';
 import styles from './page.module.scss';
 import { FaEnvelope, FaLock } from 'react-icons/fa';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import type { FormEvent } from 'react';
+import { BASE_API_URL } from '../config';
 
 export default function AdminLogin() {
   const [username, setUsername] = useState('');
@@ -23,7 +23,7 @@ export default function AdminLogin() {
     };
 
     try {
-      const response = await fetch('https://linux-vm-southeastasia-2.southeastasia.cloudapp.azure.com/api/login', {
+      const response = await fetch(`${BASE_API_URL}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
