@@ -6,19 +6,19 @@ import Placeholder from '@/app/components/placeholder';
 import Banner from '@/app/components/banner';
 import styles from './page.module.scss';
 
-export default function Home() {
+export default function Activities() {
   return (
     <div className={styles.pageWrapper}>
       <Navbar />
 
       <Banner
-        title="Computer Club KMUTNB"
-        subtitle='"We are Changeing the world with technology." ~ Bill Gates'
-        showButton={true}
+        title="กิจกรรม"
+        subtitle='รวมกิจกรรมของชมรม งานต่าง ๆ ที่เคยจัด'
+        showButton={false}
       />
 
       <div className={styles.pageContainer}>
-        <div className={styles.title2}>Announcements</div>
+        <div className={styles.title2}>กิจกรรม</div>
         <div className={styles.view}>
           <Placeholder
             title="ComDay 2024 is now open for registration!"
