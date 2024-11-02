@@ -1,41 +1,41 @@
 import express from "express";
+// Honestly why don't they do default exports?
 import * as jose from 'jose'
+import { logger } from "./config";
 
 const router = express.Router()
 
 router.post("", async (req: any, res: any) => {
-    const authHeader = req.headers.authorization
-    if (!authHeader) {
-        res.status(403).json({ msg: 'Unauthorized: Missing access token' })
+    const { refresh_token: refreshToken }: { refresh_token: string } = req.body
+    if (!refreshToken) {
+        res.status(401).send({ "error": "no token provided" })
         return
     }
-    const token = authHeader.split(' ')[1];
-    const secret = new TextEncoder().encode(process.env.refreshkey);
+    // Find the token in the Authorization header from last one
+    const token = refreshToken.split(' ').findLast(() => true);
+    if (!token) {
+        res.status(401).send({ "error": "malformed token" })
+        return
+    }
+    const refreshKey = new TextEncoder().encode(process.env.refreshkey);
+    const accessKey = new TextEncoder().encode(process.env.accesskey)
     try {
-        const { payload } = await jose.jwtVerify(token, secret);
-        console.log('Verified Payload:', payload);
+        const { payload } = await jose.jwtVerify(token, refreshKey);
+        logger.info(`Refresh token verified for ${payload.username}`);
 
-        const accesskey = new TextEncoder().encode(process.env.accesskey)
-        const refreshkey = new TextEncoder().encode(process.env.refreshkey)
         const accessjwt = await new jose.SignJWT({
             "username": payload.username
-        }).setProtectedHeader({ alg: "HS256" }).setIssuedAt().setExpirationTime('2h').sign(accesskey)
-        const refreshjwt = await new jose.SignJWT({
-            "username": payload.username
-        }).setProtectedHeader({ alg: "HS256" }).setIssuedAt().setExpirationTime('1w').sign(refreshkey)
+        }).setProtectedHeader({ alg: "HS256" }).setIssuedAt().setExpirationTime('2h').sign(accessKey)
         res.send({
-            "accesskey": accessjwt,
-            "refreshkey": refreshjwt
+            "access_token": accessjwt
         })
 
-
     } catch (err) {
-        console.error('JWT Verification failed:', err);
+        logger.error('JWT Verification failed:', err);
         res.status(500).send({
-            "massage": "refresh error"
+            "error": "JWT Verification failed"
         })
     }
 })
-
 
 export default router
