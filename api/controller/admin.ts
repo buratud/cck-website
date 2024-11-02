@@ -1,75 +1,83 @@
 import express from "express";
 import database from "../config/db";
-import { password } from "bun";
 import validaccesstoken from "./middleware";
 import { ObjectId } from "mongodb";
+import { Admin, AdminIdentifier } from "../domains/admins";
+import { logger } from "./config";
 
 const router = express.Router()
 
-router.post("", validaccesstoken, async (req: express.Request, res: express.Response) => {
-    const { username, password } = req.body
-    const hashed = await Bun.password.hash(password)
-    const query = { username, password: hashed }
+router.post("/", validaccesstoken, async (req: express.Request, res: express.Response) => {
+    const result = Admin.safeParse(req.body)
+    if (!result.success) {
+        res.status(400).send({ error: result.error })
+        return
+    }
+    if (result.data.password.length === 0) {
+        res.status(400).send({ error: "password cannot be empty" })
+        return
+    }
+    result.data.password = Bun.password.hashSync(result.data.password)
+    const col = database.collection('user')
     try {
-        const data = await database.collection('user').insertOne(query)
-        res.status(201).send(data)
+        const data = await col.insertOne(result.data)
+        res.status(201).send({ message: "OK" })
     } catch (error) {
-        console.log(`error on : ${error}`);
-        res.status(500).send(`error on : ${error}`)
+        logger.error(`${error}`);
+        res.status(500).send({ error: `${error}` })
     }
 })
 
 router.put("/:id", validaccesstoken, async (req: express.Request, res: express.Response) => {
-    const { username, password } = req.body
-    const user = database.collection('user')
-    const params = req.params as unknown as string
-    let Objectid;
+    let id: ObjectId
     try {
-        Objectid = new ObjectId(params)
+        id = new ObjectId(req.params.id)
+    } catch (error) {
+        res.status(400).send({ error: "invalid id" })
+        return
     }
-    catch (error) {
-        console.log(`error on ObjectId`);
-        res.status(400).send(`error on ObjectId`)
-        
+    const result = AdminIdentifier.safeParse(req.body)
+    if (!result.success) {
+        res.status(400).send({ error: result.error })
+        return
     }
-    const hashed = await Bun.password.hash(password)
-    const filter = { _id: Objectid }
-    const update = {
-        $set: {
-            username, password: hashed
+    if (result.data.password !== undefined) {
+        if (result.data.password.length === 0) {
+            res.status(400).send({ error: "password cannot be empty" })
+            return
         }
+        result.data.password = Bun.password.hashSync(result.data.password)
     }
+    const col = database.collection('user')
     try {
-        const data = await user.updateOne(filter, update)
-        res.status(200).send(data)
+        const updateResult =  await col.updateOne({ _id: id }, { $set: result.data })
+        if (updateResult.matchedCount === 0) {
+            res.status(404).send({ error: "id not found" })
+            return
+        } else {
+            res.status(200).send({ message: "OK" })
+        }
+    } catch (error) {
+        logger.error(`${error}`);
+        res.status(500).send({ error: `${error}` })
     }
-    catch (error) {
-        console.log(`error on : ${error}`);
-        res.status(500).send(`error on : ${error}`)
-    }
-
 })
 
-router.delete("/", validaccesstoken, async (req: express.Request, res: express.Response) => {
-    console.log("delete admin");
-
-    const { username } = req.body;
-    const user = database.collection('user')
+router.delete("/:id", validaccesstoken, async (req: express.Request, res: express.Response) => {
+    let id: ObjectId
     try {
-        const checkuser = await user.findOne({ username })
-        if (checkuser === null) {
-            res.send(404).send("this username not found ")
-        }
-        else {
-            const data = await user.deleteOne({ username })
-            res.status(200).send(data)
-        }
-
+        id = new ObjectId(req.params.id)
+    } catch (error) {
+        res.status(400).send({ error: "invalid id" })
+        return
     }
-    catch (error) {
-        console.log(`error on : ${error}`);
-        res.status(500).send(`error on : ${error}`)
-
+    const col = database.collection('user')
+    try {
+        await col.deleteOne({ _id: id })
+        res.status(204).send()
+    } catch (error) {
+        logger.error(`${error}`);
+        res.status(500).send({ error: `${error}` })
     }
 })
 
