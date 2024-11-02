@@ -31,7 +31,7 @@ router.post("", async (req: any, res: any) => {
         })
 
     } catch (err) {
-        logger.error('JWT Verification failed:', err);
+        logger.error(`JWT Verification failed: ${err}`);
         res.status(500).send({
             "error": "JWT Verification failed"
         })
