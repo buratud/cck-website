@@ -4,7 +4,6 @@ import 'dotenv/config'
 import login from "./controller/login";
 import announcement from "./controller/announcement"
 import announcements from "./controller/announcements"
-import member from "./controller/member"
 import activity from "./controller/activity"
 import activities from "./controller/activities"
 import refresh from "./controller/refreshtoken"
@@ -30,7 +29,6 @@ app.use("/login", login)
 app.use("/announcement", announcement)
 app.use("/announcements", announcements)
 app.use("/members", members)
-app.use("/member", member)
 app.use("/activity", activity)
 app.use("/activities", activities)
 app.use("/refresh", refresh)
