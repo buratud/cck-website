@@ -7,6 +7,11 @@ export const getAnnouncements = async (): Promise<Announcement[]> => {
   return response.data;
 };
 
+export const getAnnouncement = async (announcementId: string): Promise<Announcement> => {
+  const response = await api.get<Announcement>(`/api/announcement/${announcementId}`);
+  return response.data;
+}
+
 export const createAnnouncement = async (announcement: Announcement) => {
   const response = await api.post('/api/announcement', announcement);
   return response.data;

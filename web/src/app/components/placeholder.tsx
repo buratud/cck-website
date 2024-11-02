@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './placeholder.module.scss';
+import Link from 'next/link';
+import Image from 'next/image';
 
 interface PlaceholderProps {
   title: string;
@@ -20,8 +22,11 @@ const Placeholder: React.FC<PlaceholderProps> = ({
 }) => {
   return (
     <div className={styles.container}>
-      <img
+      <Image
         src={imgsrc}
+        width={0}
+        height={0}
+        sizes="100vw"
         alt="Placeholder"
         className={styles.image}
       />
@@ -31,9 +36,9 @@ const Placeholder: React.FC<PlaceholderProps> = ({
           {description}
         </p>
         {showButton && buttonLink && (
-          <a href={buttonLink} className={styles.button}>
+          <Link href={buttonLink} className={styles.button}>
             {buttonText} {/* Render the custom or default button text */}
-          </a>
+          </Link>
         )}
       </div>
     </div>
