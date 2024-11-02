@@ -15,15 +15,18 @@ import { logger } from "./controller/config";
 const app = express();
 const folderpath = ["./static/activity", "./static/announcement", "./static/member"]
 
+app.use(cors())
 app.use('/static', express.static('static'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
 
 const port = process.env.port || 8080;
 
 app.get("/", (req: any, res: any) => {
   res.send("Hello World");
 });
+
 
 app.use("/login", login)
 app.use("/announcement", announcement)
@@ -47,3 +50,7 @@ for (const i of folderpath) {
 app.listen(port, () => {
   logger.info(`Listening on port ${port}...`);
 });
+
+function cors(): any {
+  throw new Error("Function not implemented.");
+}
