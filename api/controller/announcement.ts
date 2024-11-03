@@ -76,9 +76,9 @@ router.post("/", validaccesstoken, upload.array('file'), async (req: express.Req
 })
 
 router.put("/:id", validaccesstoken, upload.array('file'), async (req: express.Request, res: express.Response) => {
-    const { name, description } = req.body
+    const { name, description, erased } : { name: string, description: string, erased: string } = req.body;
     const files = req.files as Express.Multer.File[]
-    let listfile: String[] = []
+    let listfile: string[] = []
 
     if (files?.length != 0) {
         for (const file of files) {
@@ -106,12 +106,18 @@ router.put("/:id", validaccesstoken, upload.array('file'), async (req: express.R
     }
 
     const filter = { _id: Objectid }
-    const update = {
+    const update : { $set: { name: string, description: string, images?: string[] } } = {
         $set: {
             name,
             description,
-            images: listfile
         }
+    } 
+
+    if (listfile.length > 0) {
+        update.$set.images = listfile
+    }
+    if (erased === "true") {
+       update.$set.images = []
     }
 
     const announcement = database.collection('announcement')
