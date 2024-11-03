@@ -11,9 +11,9 @@ export default function EditAdmin() {
   const { id } = useParams(); // Capture the admin ID dynamically
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
+  const [initialUsername, setInitialUsername] = useState(''); // Store initial username separately
+  const [role, setRole] = useState('');
   const [oldPassword, setOldPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
@@ -28,11 +28,12 @@ export default function EditAdmin() {
 
         if (response.ok) {
           const data = await response.json();
-          // Find the admin with the matching ID
           const admin = data.find((admin: { _id: string }) => admin._id === id);
           if (admin) {
             setName(admin.name);
             setUsername(admin.username);
+            setInitialUsername(admin.username); // Set initial username for validation
+            setRole(admin.role);
           } else {
             setError("Admin not found.");
           }
@@ -53,40 +54,53 @@ export default function EditAdmin() {
     setError(null);
     setSuccess(null);
 
-    if (!name || !username || !oldPassword || !newPassword || !confirmNewPassword) {
+    if (!name || !username || !role || !oldPassword) {
       setError("Please fill in all fields.");
       return;
     }
 
-    if (newPassword !== confirmNewPassword) {
-      setError("New passwords do not match.");
-      return;
-    }
-
-    const requestBody = {
-      name,
-      username,
-      oldPassword,
-      newPassword,
-    };
-
+    // Step 1: Validate the old password using the initially fetched username
     try {
-      const response = await fetch(`${BASE_API_URL}/admin/${id}`, {
+      const loginResponse = await fetch(`${BASE_API_URL}/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: initialUsername, // Use initialUsername for validation
+          password: oldPassword,
+        }),
+      });
+
+      if (!loginResponse.ok) {
+        setError("Incorrect old password.");
+        return;
+      }
+
+      // Step 2: Update admin details if the password validation succeeded
+      const updateRequestBody = {
+        name,
+        username,
+        role,
+        password: oldPassword, // Send the current password as required in the update
+      };
+
+      const updateResponse = await fetch(`${BASE_API_URL}/admin/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`,
         },
-        body: JSON.stringify(requestBody),
+        body: JSON.stringify(updateRequestBody),
       });
 
-      if (response.ok) {
+      if (updateResponse.ok) {
         setSuccess("Admin details updated successfully!");
         setTimeout(() => {
           router.push('/admin-portal/admins/');
         }, 1000);
       } else {
-        const errorData = await response.json();
+        const errorData = await updateResponse.json();
         setError(errorData.message || "Failed to update admin details.");
       }
     } catch (error) {
@@ -117,27 +131,19 @@ export default function EditAdmin() {
             className={styles.input}
           />
 
-          <label className={styles.label}>Old Password:</label>
+          <label className={styles.label}>Role:</label>
+          <input
+            type="text"
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            className={styles.input}
+          />
+
+          <label className={styles.label}>Enter Password to change:</label>
           <input
             type="password"
             value={oldPassword}
             onChange={(e) => setOldPassword(e.target.value)}
-            className={styles.input}
-          />
-
-          <label className={styles.label}>New Password:</label>
-          <input
-            type="password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            className={styles.input}
-          />
-
-          <label className={styles.label}>Re-enter New Password:</label>
-          <input
-            type="password"
-            value={confirmNewPassword}
-            onChange={(e) => setConfirmNewPassword(e.target.value)}
             className={styles.input}
           />
 
