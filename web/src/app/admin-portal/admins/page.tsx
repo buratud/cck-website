@@ -2,21 +2,21 @@
 
 import Navbar from '../navbar';
 import styles from './page.module.scss';
-import Announcement from './announcement';
+import Admin from './admin';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { BASE_API_URL } from '../../config';
 
-interface AnnouncementData {
+interface AdminData {
   _id: string;
   name: string;
-  description: string;
-  images: string[];
+  username: string; // Added username field
+  role: string;
 }
 
 export default function Home() {
   const router = useRouter();
-  const [announcements, setAnnouncements] = useState<AnnouncementData[]>([]);
+  const [admins, setAdmins] = useState<AdminData[]>([]);
 
   useEffect(() => {
     const checkAuthentication = async () => {
@@ -53,9 +53,9 @@ export default function Home() {
       }
     };
 
-    const fetchAnnouncements = async () => {
+    const fetchAdmins = async () => {
       try {
-        const response = await fetch(`${BASE_API_URL}/announcements`, {
+        const response = await fetch(`${BASE_API_URL}/admins`, {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`,
@@ -63,29 +63,29 @@ export default function Home() {
         });
 
         if (response.ok) {
-          const data: AnnouncementData[] = await response.json();
-          setAnnouncements(data);
+          const data: AdminData[] = await response.json();
+          setAdmins(data);
         } else {
-          console.error('Failed to fetch announcements');
+          console.error('Failed to fetch admins');
         }
       } catch (error) {
-        console.error('Error fetching announcements:', error);
+        console.error('Error fetching admins:', error);
       }
     };
 
-    checkAuthentication().then(fetchAnnouncements);
+    checkAuthentication().then(fetchAdmins);
   }, [router]);
 
   const handleEdit = (id: string) => {
-    router.push(`/admin-portal/announcements/edit/${id}`);
+    router.push(`/admin-portal/admins/edit/${id}`);
   };
 
   const handleDelete = async (id: string) => {
-    const confirmed = window.confirm('Are you sure you want to delete this announcement?');
+    const confirmed = window.confirm('Are you sure you want to delete this admin?');
     if (!confirmed) return;
 
     try {
-      const response = await fetch(`${BASE_API_URL}/announcement/${id}`, {
+      const response = await fetch(`${BASE_API_URL}/admin/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`,
@@ -93,25 +93,21 @@ export default function Home() {
       });
 
       if (response.ok) {
-        console.log(`Announcement ${id} deleted successfully.`);
-
-        // Update the announcements state to remove the deleted announcement
-        setAnnouncements((prevAnnouncements) =>
-          prevAnnouncements.filter((announcement) => announcement._id !== id)
-        )
-        // Fallback refresh to ensure data is accurate
+        console.log(`Admin ${id} deleted successfully.`);
+        setAdmins((prevAdmins) =>
+          prevAdmins.filter((admin) => admin._id !== id)
+        );
         router.refresh();
-
       } else {
-        console.error('Failed to delete announcement');
+        console.error('Failed to delete admin');
       }
     } catch (error) {
-      console.error('Error deleting announcement:', error);
+      console.error('Error deleting admin:', error);
     }
   };
 
-  const handleAddAnnouncement = () => {
-    router.push('/admin-portal/announcements/add');
+  const handleAddAdmin = () => {
+    router.push('/admin-portal/admins/register');
   };
 
   const handleBack = () => {
@@ -123,21 +119,21 @@ export default function Home() {
       <Navbar />
       <div className={styles.pageContainer}>
         <div className={styles.view}>
-          <h2 className={styles.header}>Announcements</h2>
+          <h2 className={styles.header}>Admins</h2>
           <div className={styles.buttonContainer}>
             <button className={styles.backButton} onClick={handleBack}>Back</button>
-            <button className={styles.addButton} onClick={handleAddAnnouncement}>Add Announcement</button>
+            <button className={styles.addButton} onClick={handleAddAdmin}>Register New Admin</button>
           </div>
-          {announcements.length === 0 ? (
-            <p className={styles.noAnnouncements}>No Announcements</p>
+          {admins.length === 0 ? (
+            <p className={styles.noAdmins}>No Admins</p>
           ) : (
-            announcements.map((announcement) => (
-              <Announcement
-                key={announcement._id}
-                title={announcement.name}
-                description={announcement.description}
-                onEdit={() => handleEdit(announcement._id)}
-                onDelete={() => handleDelete(announcement._id)}
+            admins.map((admin) => (
+              <Admin
+                key={admin._id}
+                title={admin.name}
+                description={admin.username} // Use username for description
+                onEdit={() => handleEdit(admin._id)}
+                onDelete={() => handleDelete(admin._id)}
               />
             ))
           )}

@@ -33,11 +33,9 @@ export default function AdminLogin() {
 
       if (response.ok) {
         const data = await response.json();
-        // Store tokens in sessionStorage
         sessionStorage.setItem('access_token', data.access_token);
         sessionStorage.setItem('refresh_token', data.refresh_token);
         
-        // Redirect to /admin-portal
         router.push('/admin-portal');
       } else {
         setError('Invalid username or password');

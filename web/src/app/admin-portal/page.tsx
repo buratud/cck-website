@@ -70,6 +70,12 @@ export default function Home() {
             >
               Activities
             </button>
+            <button
+              className={styles.actionButton}
+              onClick={() => router.push('/admin-portal/admins')}
+            >
+              Admins
+            </button>
           </div>
         </div>
       </div>

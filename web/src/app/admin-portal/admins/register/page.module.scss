@@ -14,14 +14,7 @@
     padding: 40px 0;
   }
 
-  .error {
-    color: #ff4d4d;
-    font-size: 14px;
-    margin-top: 8px;
-    text-align: center;
-  }
-  
-  .loginContainer {
+  .registerContainer {
     background-color: #f0f2f5;
     padding: 40px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -34,7 +27,7 @@
       width: 95px;
       margin: 0 auto 16px;
       display: block;
-    }    
+    }
 
     h2 {
       font-size: 24px;
@@ -43,7 +36,7 @@
       color: #333;
     }
 
-    .loginForm {
+    .registerForm {
       display: flex;
       flex-direction: column;
       gap: 16px;
@@ -72,9 +65,9 @@
           color: #333;
           border-radius: 8px;
         }
-      }      
+      }
 
-      .loginButton {
+      .registerButton {
         padding: 12px;
         font-size: 16px;
         font-weight: bold;
@@ -89,18 +82,32 @@
           background-color: #0056b3;
         }
       }
-    }
 
-    .registerLink {
-      margin-top: 12px;
-      font-size: 14px;
-      color: #007bff;
-      cursor: pointer;
-      text-decoration: underline;
+      .error {
+        color: #ff4d4d;
+        font-size: 14px;
+        text-align: center;
+      }
 
-      &:hover {
-        color: #0056b3;
+      .success {
+        color: #28a745;
+        font-size: 14px;
+        text-align: center;
       }
     }
+  }
+}
+
+.backButton {
+  margin-top: 16px;
+  font-size: 14px;
+  color: #007bff;
+  cursor: pointer;
+  background: none;
+  border: none;
+  text-decoration: underline;
+
+  &:hover {
+    color: #0056b3;
   }
 }

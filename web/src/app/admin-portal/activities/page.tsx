@@ -83,7 +83,7 @@ export default function Home() {
   const handleDelete = async (id: string) => {
     const confirmed = window.confirm('Are you sure you want to delete this activity?');
     if (!confirmed) return;
-  
+
     try {
       const response = await fetch(`${BASE_API_URL}/activity/${id}`, {
         method: 'DELETE',
@@ -91,24 +91,24 @@ export default function Home() {
           'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`,
         },
       });
-  
+
       if (response.ok) {
         console.log(`Activity ${id} deleted successfully.`);
-        
+
         // Update the activities state to remove the deleted activity
-        setActivities((prevActivities) => 
+        setActivities((prevActivities) =>
           prevActivities.filter((activity) => activity._id !== id)
         )
-          // Fallback refresh to ensure data is accurate
+        // Fallback refresh to ensure data is accurate
         router.refresh();
-  
+
       } else {
         console.error('Failed to delete activity');
       }
     } catch (error) {
       console.error('Error deleting activity:', error);
     }
-  };  
+  };
 
   const handleAddActivity = () => {
     router.push('/admin-portal/activities/add');
@@ -124,6 +124,10 @@ export default function Home() {
       <div className={styles.pageContainer}>
         <div className={styles.view}>
           <h2 className={styles.header}>Activities</h2>
+          <div className={styles.buttonContainer}>
+            <button className={styles.backButton} onClick={handleBack}>Back</button>
+            <button className={styles.addButton} onClick={handleAddActivity}>Add Activity</button>
+          </div>
           {activities.length === 0 ? (
             <p className={styles.noActivities}>No Activities</p>
           ) : (
@@ -137,10 +141,6 @@ export default function Home() {
               />
             ))
           )}
-        </div>
-        <div className={styles.buttonContainer}>
-          <button className={styles.backButton} onClick={handleBack}>Back</button>
-          <button className={styles.addButton} onClick={handleAddActivity}>Add Activity</button>
         </div>
       </div>
     </div>
