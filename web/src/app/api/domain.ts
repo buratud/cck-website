@@ -7,3 +7,9 @@ export interface Announcement extends Identity {
     description: string;
     images: string[];
 }
+
+export interface Activity extends Identity {
+    name: string;
+    description: string;
+    images: string[];
+}
