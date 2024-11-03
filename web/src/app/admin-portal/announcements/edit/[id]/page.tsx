@@ -58,6 +58,7 @@ export default function EditAnnouncement() {
     const formData = new FormData();
     formData.append('name', name);
     formData.append('description', description);
+    formData.append('erased', 'false');
     if (file) {
       formData.append('file', file);
     }
@@ -99,14 +100,14 @@ export default function EditAnnouncement() {
             onChange={(e) => setName(e.target.value)}
             className={styles.input}
           />
-          
+
           <label className={styles.label}>Description:</label>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             className={styles.textarea}
           ></textarea>
-          
+
           <label className={styles.label}>Image File (optional):</label>
           <input
             type="file"
@@ -117,7 +118,7 @@ export default function EditAnnouncement() {
 
           {error && <p className={styles.error}>{error}</p>}
           {success && <p className={styles.success}>{success}</p>}
-          
+
           <button type="submit" className={styles.submitButton}>Save Changes</button>
         </form>
         <button className={styles.backButton} onClick={() => router.push('/admin-portal/announcements/')}>Back</button>

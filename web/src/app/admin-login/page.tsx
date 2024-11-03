@@ -2,7 +2,7 @@
 
 import styles from './page.module.scss';
 import { FaEnvelope, FaLock } from 'react-icons/fa';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import type { FormEvent } from 'react';
 import { BASE_API_URL } from '../config';
@@ -12,6 +12,17 @@ export default function AdminLogin() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+
+  useEffect(() => {
+    // Check if there are valid tokens in sessionStorage
+    const accessToken = sessionStorage.getItem('access_token');
+    const refreshToken = sessionStorage.getItem('refresh_token');
+
+    if (accessToken && refreshToken) {
+      // Redirect to the admin portal if tokens are present
+      router.push('/admin-portal');
+    }
+  }, [router]);
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -35,7 +46,8 @@ export default function AdminLogin() {
         const data = await response.json();
         sessionStorage.setItem('access_token', data.access_token);
         sessionStorage.setItem('refresh_token', data.refresh_token);
-        
+
+        // Redirect to /admin-portal
         router.push('/admin-portal');
       } else {
         setError('Invalid username or password');
