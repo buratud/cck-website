@@ -13,7 +13,7 @@ export default async function Home() {
 
       <Banner
         title="Computer Club KMUTNB"
-        subtitle='"We are Changeing the world with technology." ~ Rookies111'
+        subtitle='"We are changing the world with technology." ~ Rookies111'
         showButton={true}
       />
 
