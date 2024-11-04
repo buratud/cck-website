@@ -38,7 +38,7 @@ async function Announcement() {
             imgsrc={imageBanner}
             showButton={true}
             buttonLink={`/announcement/${announcement._id}`}
-            buttonText='Read More'
+            buttonText='อ่านเพิ่มเติม'
           />
         </div>
       })}
