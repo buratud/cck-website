@@ -1,13 +1,10 @@
 'use server';
 
-import { getAnnouncement, getAnnouncements } from "@/app/api/announcements";
-import Navbar from "@/app/components/navbar";
 import DetailPageSkeleton from "@/app/components/skeletons/detail-page";
 import { BASE_API_URL } from "@/app/config";
 import Image from "next/image";
 import { Suspense } from "react";
 import styles from './styles.module.scss';
-import Error from "next/error";
 import { notFound } from "next/navigation";
 import { getActivity } from "@/app/api/activity";
 

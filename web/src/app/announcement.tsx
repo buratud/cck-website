@@ -1,6 +1,6 @@
 'use server';
 
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense } from 'react';
 import Placeholder from './components/placeholder';
 import PlaceholderSkeleton from './components/skeletons/placeholder';
 import { getAnnouncements } from './api/announcements';

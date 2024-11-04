@@ -2,7 +2,6 @@
 
 import Navbar from '@/app/components/navbar';
 import Footer from '@/app/components/footer';
-import Placeholder from '@/app/components/placeholder';
 import Banner from '@/app/components/banner';
 import styles from './page.module.scss';
 import Announcement from './announcement';

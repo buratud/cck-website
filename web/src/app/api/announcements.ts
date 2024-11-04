@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { Announcement } from './domain';
 import api from './config';
 

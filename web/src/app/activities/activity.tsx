@@ -1,6 +1,6 @@
 'use server';
 
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense } from 'react';
 import Placeholder from '@/app/components/placeholder';
 import PlaceholderSkeleton from '@/app/components/skeletons/placeholder';
 import { BASE_API_URL } from '@/app/config';
