@@ -18,7 +18,7 @@ export default async function Home() {
       />
 
       <div className={styles.pageContainer}>
-        <div className={styles.title2}>Announcements</div>
+        <div className={styles.title2}>ประกาศ</div>
         <div className={styles.view}>
           <Announcement />
         </div>
