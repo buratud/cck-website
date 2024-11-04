@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import styles from './Banner.module.scss';
+import styles from './banner.module.scss';
 
 interface BannerProps {
   title: string;
