@@ -1,6 +1,21 @@
 .container {
     padding: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
+    max-width: 900px;
     min-height: calc(100vh - 126.8px);
+    margin: 0 auto;
+}
+
+.backButton {
+    font-size: 1em;
+    color: #ffffff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .image {

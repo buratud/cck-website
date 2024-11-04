@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Suspense } from "react";
 import styles from './styles.module.scss';
 import { notFound } from "next/navigation";
+import Link from "next/link";
 
 export default async function AnnouncementDetailsPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
@@ -22,6 +23,10 @@ async function Announcement({ id }: { id: string }) {
         const announcement = await getAnnouncement(id);
         return (
             <div>
+                <div>
+                    <Link href="/activities" className={styles.backButton}>&lt; Back</Link>
+                </div>
+
                 {announcement.images.length > 0 && (
                     <Image src={`${BASE_API_URL}${announcement.images[0]}`}
                         width={0}
