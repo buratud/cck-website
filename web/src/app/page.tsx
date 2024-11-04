@@ -13,7 +13,7 @@ export default function Home() {
 
       <Banner
         title="Computer Club KMUTNB"
-        subtitle='"We are Changeing the world with technology." ~ Bill Gates'
+        subtitle='"We are Changing the world with technology." ~ Bill Gates'
         showButton={true}
       />
 
