@@ -24,7 +24,7 @@ async function Announcement({ id }: { id: string }) {
         return (
             <div>
                 <div>
-                    <Link href="/activities" className={styles.backButton}>&lt; Back</Link>
+                    <Link href="/" className={styles.backButton}>&lt; Back</Link>
                 </div>
 
                 {announcement.images.length > 0 && (
