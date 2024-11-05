@@ -29,6 +29,12 @@
     .description {
       font-size: 16px;
       color: #666;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   
     .actions {

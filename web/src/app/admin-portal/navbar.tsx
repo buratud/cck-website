@@ -29,11 +29,12 @@ const Navbar: React.FC = () => {
   }, []);
 
   const handleLogout = () => {
-    // Clear tokens from sessionStorage
-    sessionStorage.removeItem('access_token');
-    sessionStorage.removeItem('refresh_token');
-    // Redirect to the login page
-    router.push('/admin-login');
+    const isConfirmed = window.confirm("Are you sure you want to log out?");
+    if (isConfirmed) {
+      sessionStorage.removeItem('access_token');
+      sessionStorage.removeItem('refresh_token');
+      router.push('/admin-login');
+    }
   };
 
   return (

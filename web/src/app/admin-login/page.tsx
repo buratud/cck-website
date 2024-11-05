@@ -4,6 +4,7 @@ import styles from './page.module.scss';
 import { FaEnvelope, FaLock } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import type { FormEvent } from 'react';
 import { BASE_API_URL } from '../config';
 
@@ -62,7 +63,9 @@ export default function AdminLogin() {
     <div className={styles.pageWrapper}>
       <div className={styles.pageContainer}>
         <div className={styles.loginContainer}>
-          <img src="/CCK_normal_circle.png" alt="CCK Logo" className={styles.logo} />
+          <Link href="/">
+            <img src="/CCK_normal_circle.png" alt="CCK Logo" className={styles.logo} />
+          </Link>
           <h2>CCK Admin Portal</h2>
           <form className={styles.loginForm} onSubmit={handleLogin}>
             <div className={styles.inputGroup}>
