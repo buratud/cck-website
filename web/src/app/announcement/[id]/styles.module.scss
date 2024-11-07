@@ -1,38 +1,78 @@
 .container {
-    padding: 30px;
-    padding-left: 50px;
-    padding-right: 50px;
-    max-width: 900px;
-    min-height: calc(100vh - 126.8px);
-    margin: 0 auto;
+  padding: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  max-width: 900px;
+  min-height: calc(100vh - 126.8px);
+  margin: 0 auto;
 }
 
 .backButton {
-    font-size: 1em;
-    color: #ffffff;
-    background: none;
-    border: none;
-    cursor: pointer;
-    &:hover {
-        text-decoration: underline;
-    }
+  font-size: 1em;
+  color: #ffffff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .image {
-    width: auto;
-    height: 300px;
-    margin: 0 auto 1em auto;
-    object-fit: cover;
+  width: auto;
+  height: 300px;
+  margin: 0 auto 1em auto;
+  object-fit: cover;
 }
 
 .title {
-    font-size: 2em;
-    width: 100%;
-    font-weight: bold;
+  font-size: 2em;
+  width: 100%;
+  font-weight: bold;
 }
 
 .description {
     font-size: 1em;
     width: 100%;
     margin-top: 0.5em;
-}
+    h1 {
+      font-size: 1.7em;
+      font-weight: bold;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+    }
+  
+    h2 {
+      font-size: 1.4em;
+      font-weight: bold;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+    }
+  
+    h3 {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+    }
+  
+    p,
+    li {
+      margin-bottom: 0.75em;
+      line-height: 1.6;
+    }
+  
+    ul {
+      list-style: disc inside;
+      margin-left: 20px;
+    }
+  
+    strong {
+      font-weight: bold;
+    }
+  
+    a {
+      color: #0070f3;
+      text-decoration: underline;
+    }
+  }  

@@ -8,6 +8,7 @@ import { Suspense } from "react";
 import styles from './styles.module.scss';
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import ReactMarkdown from 'react-markdown';
 
 export default async function AnnouncementDetailsPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
@@ -28,15 +29,23 @@ async function Announcement({ id }: { id: string }) {
                 </div>
 
                 {announcement.images.length > 0 && (
-                    <Image src={`${BASE_API_URL}${announcement.images[0]}`}
+                    <Image
+                        src={`${BASE_API_URL}${announcement.images[0]}`}
                         width={0}
                         height={0}
                         sizes="100vw"
-                        className={`${styles.image}`}
-                        alt={announcement.name} />
+                        className={styles.image}
+                        alt={announcement.name}
+                    />
                 )}
-                <h1 className={`${styles.title}`}>{announcement.name}</h1>
-                <p className={`${styles.description}`}>{announcement.description}</p>
+                <h1 className={styles.title}>{announcement.name}</h1>
+
+                {/* Render the description using ReactMarkdown */}
+                <div className={styles.description}>
+                    <ReactMarkdown>
+                        {announcement.description}
+                    </ReactMarkdown>
+                </div>
             </div>
         );
     } catch (error) {

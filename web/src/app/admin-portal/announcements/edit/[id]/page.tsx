@@ -57,7 +57,7 @@ export default function EditAnnouncement() {
 
     const formData = new FormData();
     formData.append('name', name);
-    formData.append('description', description);
+    formData.append('description', description); // Save description as Markdown
     formData.append('erased', 'false');
     if (file) {
       formData.append('file', file);
@@ -101,11 +101,12 @@ export default function EditAnnouncement() {
             className={styles.input}
           />
 
-          <label className={styles.label}>Description:</label>
+          <label className={styles.label}>Description (Markdown supported):</label>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             className={styles.textarea}
+            placeholder="Enter description in Markdown format"
           ></textarea>
 
           <label className={styles.label}>Image File (optional):</label>

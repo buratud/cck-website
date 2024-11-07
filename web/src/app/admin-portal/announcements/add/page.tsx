@@ -121,11 +121,12 @@ export default function AddAnnouncement() {
             className={styles.input}
           />
           
-          <label className={styles.label}>Description:</label>
+          <label className={styles.label}>Description (Markdown supported):</label>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             className={styles.textarea}
+            placeholder="Enter description in Markdown format"
           ></textarea>
           
           <label className={styles.label}>Image File (optional):</label>
