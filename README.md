@@ -14,11 +14,13 @@ The Computer Club website was created as a platform to publicise the club's acti
 - NextJS: frontend development
 - ExpressJS: backend development
 - Figma: frontend design
+
 **Cloud Services**
 - Microsoft Azure: API server
 - Vercel: web deployment
 - GitHub: repository and project management
 - MongoDB: NoSQL database
+
 **Tools and Languages**
 - Microsoft Visual Studio Code: preferred text editor
 - TypeScript: preferred coding language
