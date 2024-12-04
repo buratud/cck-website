@@ -4,7 +4,7 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'linux-vm-southeastasia-2.southeastasia.cloudapp.azure.com',
+                hostname: 'ai-vpn.southeastasia.cloudapp.azure.com',
                 port: '',
                 pathname: '/api/static/**'
             }
