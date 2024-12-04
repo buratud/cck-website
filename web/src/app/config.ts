@@ -1,1 +1,1 @@
-export const BASE_API_URL = "https://linux-vm-southeastasia-1.southeastasia.cloudapp.azure.com/api"
+export const BASE_API_URL = "https://ai-vpn.southeastasia.cloudapp.azure.com/api"
